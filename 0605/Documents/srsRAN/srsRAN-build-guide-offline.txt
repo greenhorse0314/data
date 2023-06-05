@@ -1,0 +1,42 @@
+1. Install Ubuntu 16.04
+
+2. Build UHD and install
+### Install UHD
+sudo apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential git
+cd uhd
+cd host
+mkdir build
+cd build
+cmake ../ -DENABLE_STATIC=OFF -DENABLE_EXAMPLES=ON -DENABLE_TESTS=OFF
+make
+sudo make install
+
+### compile srsGUI
+sudo apt-get install qt5-default qttools5-dev-tools libqt5svg5-dev cmake build-essential
+
+########## extract srsGUI.tar.gz ##########
+
+cd srsGUI
+mkdir build
+cd build
+
+cmake ..
+make
+
+### srsRAN_4G 
+sudo apt-get install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev
+
+########## extract srsRAN_4G.rar ##########
+
+cd srsRAN_4G
+mkdir build
+cd build
+cmake ../
+make
+make test
+sudo make install
+
+srsran_4g_install_configs.sh user
+
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+./srsUE
