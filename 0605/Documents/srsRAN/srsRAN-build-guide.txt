@@ -1,0 +1,44 @@
+
+sudo apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential git
+sudo apt-get install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev
+sudo apt-get install qt5-default qttools5-dev-tools libqt5svg5-dev libqwt-qt5-dev cmake build-essential 
+
+
+### Install UHD
+sudo apt-get update
+sudo apt-get install libboost-all-dev libusb-1.0-0-dev python-mako doxygen python-docutils cmake build-essential git
+git clone https://github.com/EttusResearch/uhd.git
+cd uhd
+git checkout v3.15.0.0
+cd host
+mkdir build
+cd build
+cmake ../ -DENABLE_STATIC=OFF -DENABLE_EXAMPLES=ON -DENABLE_TESTS=OFF
+make
+sudo make install
+
+### compile srsGUI
+sudo apt-get install qt5-default qttools5-dev-tools libqt5svg5-dev cmake build-essential
+git clone https://github.com/srsran/srsGUI.git
+
+cd srsGUI
+mkdir build
+cd build
+
+cmake ..
+make
+
+### srsRAN_4G 
+sudo apt-get install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev
+git clone https://github.com/srsRAN/srsRAN_4G.git
+cd srsRAN_4G
+mkdir build
+cd build
+cmake ../
+make
+make test
+
+sudo make install
+srsran_4g_install_configs.sh user
+
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
