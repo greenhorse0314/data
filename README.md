@@ -1,3 +1,3 @@
 # data
 Please focus to me.
-I am a Ebedded System engineer. 
+I am a Embedded System engineer. 
